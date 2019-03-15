@@ -12,6 +12,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Stack<Integer> s = new Stack<>(6);
 
+        char a = '\u0030';
+        System.out.println(a);
+
 		for (int i = 0; i < 6; i++) {
 			s.push(scanner.nextInt());
 		}

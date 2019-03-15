@@ -11,16 +11,39 @@ package com.kkkk.adt;
 
 public class LinkedList<E> {
 
-    public LinkedList() {
+    Node<E> head = null;
+    Node<E> tail = null;
+    transient int size = 0;  // transient : turn off the serialization
 
+    public LinkedList() {
+        //make empty list
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public void insert(E e) {
+        if (head == null) {
+            head = new Node<>(null, e, null);
+            tail = head;
+        }
+        tail = new Node<>(null, e, tail);
+        size++;
+    }
+
+    public void remove(Node<E> node) {
+        node.prev.next = null;
+        tail = node.prev;
+        size--;
     }
 
     private static class Node<E> {
         E element;
-        int next;
-        int prev;
+        Node<E> next;
+        Node<E> prev;
 
-        Node(int next, E element, int prev) {
+        Node(Node<E> next, E element, Node<E> prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
