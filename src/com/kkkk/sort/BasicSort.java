@@ -13,6 +13,7 @@ public class BasicSort {
     public void bubbleSort(int[] a) {
         Utils utils = new Utils();
         int n = a.length;
+        /* 当sorted = true时停止循环， sorted = !sorted返回!sorted，且更改了sorted */
         for (boolean sorted = false; sorted = !sorted; n--) {
             for (int j = 1; j < n; j++) {
                 if (a[j - 1] > a[j]) {
