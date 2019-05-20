@@ -38,6 +38,10 @@ public class LinkedList<E> {
         size--;
     }
 
+    public void put(Node<E> node) {
+        //
+    }
+
     private static class Node<E> {
         E element;
         Node<E> next;
