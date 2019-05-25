@@ -32,6 +32,30 @@ public class Vector<E> {
         return count++;
     }
 
+    public E get(int index) {
+        if (index >= count)
+            throw new ArrayIndexOutOfBoundsException(index);
+        return (E) data[index];
+    }
+
+    public E set(int index, E value) {
+        // return old
+        if (index >= count)
+            throw new ArrayIndexOutOfBoundsException(index);
+
+        E old = (E) data[index];
+        data[index] = value;
+        return old;
+    }
+
+    public void copyInto(Object[] anArray) {
+        System.arraycopy(data, 0, anArray, 0, count);
+    }
+
+    public int expand() {
+
+    }
+
     public static void main(String[] args) {
         Vector<Integer> s = new Vector<>();
         Scanner sc = new Scanner(System.in);
