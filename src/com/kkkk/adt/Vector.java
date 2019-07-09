@@ -53,7 +53,7 @@ public class Vector<E> {
     }
 
     public int expand() {
-
+        return 0;
     }
 
     public static void main(String[] args) {
