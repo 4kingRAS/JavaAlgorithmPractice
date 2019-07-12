@@ -67,8 +67,9 @@ public class ReverseLinkedList {
         sc.close();
 
         // 遍历一次，边读取边反转
-        String head;
+        String head = null;
         String cur = first;
+        String last = first;
         boolean isFirst = true;
         while (sum >= k) {
             c = k;
@@ -78,9 +79,17 @@ public class ReverseLinkedList {
                 cur = n.next;
                 if (c < k) {
                     if (c == 1) {
-                        map.get(first).next = cur;
-                        first = n.addr;
-                        if (isFirst) { head = n.addr; isFirst = false;}
+                        if (isFirst) {
+                            head = n.addr;
+                            isFirst = false;
+                            map.get(first).next = cur;
+                            first = cur;
+                        } else {
+                            map.get(last).next = n.addr;
+                            last = first;
+                            first = cur;
+                            if ((sum - k) < k) { map.get(last).next = "-1"; }
+                        }
                     }
                     n.next = p.addr;
                     p = n;
@@ -88,12 +97,13 @@ public class ReverseLinkedList {
                 c--;
             }
             sum -= k;
+
         }
 
-        while (!first.equals("-1")) {
-            Node<String> p = map.get(first);
+        while (!head.equals("-1")) {
+            Node<String> p = map.get(head);
             System.out.println(p.addr + " " + p.data + " " + p.next);
-            first = p.next;
+            head = p.next;
         }
     }
 
