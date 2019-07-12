@@ -33,7 +33,7 @@ ArrayList<E>
 */
 
 public class ReverseLinkedList {
-    private static class Node<E> {
+    public static class Node<E> {
         E data;
         E next;
         E addr;
@@ -53,8 +53,8 @@ public class ReverseLinkedList {
         String first = a[0];
         int sum = Integer.valueOf(a[1]);
         int k = Integer.valueOf(a[2]);
-        ArrayList<Node> ll = new ArrayList<Node>();
 
+        // IO
         int c = sum;
         HashMap<String, Node<String>> map = new HashMap<String, Node<String>>();
         while (c != 0){
@@ -66,32 +66,35 @@ public class ReverseLinkedList {
         }
         sc.close();
 
-        Node<String> p = null;
-        while (!first.equals("-1")) {
-            c++;
-            Node<String> n = map.get(first);
-            first = n.next;
-            p = n;
-            if (c > 1) {
-                n.next = p.addr;
+        // 遍历一次，边读取边反转
+        String head;
+        String cur = first;
+        boolean isFirst = true;
+        while (sum >= k) {
+            c = k;
+            Node<String> p = map.get(cur);
+            while (c > 0) {
+                Node<String> n = map.get(cur);
+                cur = n.next;
+                if (c < k) {
+                    if (c == 1) {
+                        map.get(first).next = cur;
+                        first = n.addr;
+                        if (isFirst) { head = n.addr; isFirst = false;}
+                    }
+                    n.next = p.addr;
+                    p = n;
+                }
+                c--;
             }
+            sum -= k;
         }
 
-        //out
-        for (int i = 0; i<ll.size()-1; i++){
-            String str = ""+ll.get(i).address;
-            String str2 = ""+ll.get(i+1).address;
-            while(str.length() < 5)
-                str = "0"+str;
-            while(str2.length() < 5)
-                str2 = "0"+str2;
-            System.out.println(str + " " + ll.get(i).val + " " + str2);
+        while (!first.equals("-1")) {
+            Node<String> p = map.get(first);
+            System.out.println(p.addr + " " + p.data + " " + p.next);
+            first = p.next;
         }
-        String str = ""+ll.get(ll.size()-1).address;
-        while(str.length() < 5)
-            str = "0"+str;
-        System.out.println(str + " " + ll.get(ll.size()-1).val + " -1");
-
     }
 
 }
