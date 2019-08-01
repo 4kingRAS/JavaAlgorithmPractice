@@ -1,6 +1,5 @@
 package com.kkkk.patB;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -106,5 +105,4 @@ public class ReverseLinkedList {
             head = p.next;
         }
     }
-
 }
