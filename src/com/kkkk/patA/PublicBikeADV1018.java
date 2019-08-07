@@ -73,20 +73,20 @@ public class PublicBikeADV1018 {
                     remain += cap[s];
                 } else {
                     if (remain + cap[s] > 0) {  // remain > abs(cap)
-                        remain -= cap[s];
+                        remain += cap[s];
                     } else {
-                        need += remain +cap[s];
+                        need += 0 - cap[s] - remain;
                         remain = 0;
                     }
                 }
             }
             if (need < minNeed) { // 1.shortest : depth first 2.min need
                 minNeed = need;
-                path = temp;
+                path = (Stack<Integer>) temp.clone();
                 minRemain = remain;
             } else if (need == minNeed && remain < minRemain) { //3.min take from PBMC
                 minRemain = remain;
-                path = temp;
+                path = (Stack<Integer>) temp.clone();
             }
             temp.pop();
             return;
@@ -136,8 +136,8 @@ public class PublicBikeADV1018 {
     public void print() {
         System.out.print(minNeed + " ");
         for (int i = path.size() - 1; i >= 0; i--) {
-            System.out.print(path.get(i));
-            if (i > 0) System.out.print(" ");
+            System.out.print(path.get(i).toString());
+            if (i > 0) System.out.print("->");
         }
         System.out.print(" " + minRemain);
     }
