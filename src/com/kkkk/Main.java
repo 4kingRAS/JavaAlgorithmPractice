@@ -2,38 +2,48 @@ package com.kkkk;
 
 import java.util.Scanner;
 
-import com.kkkk.adt.Stack;
-import com.kkkk.sort.BasicSort;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        boolean b = false;
-        int n = 5;
-        for (boolean s = false; s = !s; n--) {
-            System.out.println(b = !b);
-            s = false;
+        char[] t = {'A', 'B', 'C', 'D', 'E', 'F'};
+        String[] out = new String[259];
+
+        Scanner sc = new Scanner(System.in);
+
+        int len = sc.nextInt();
+        String in = sc.nextLine();
+
+        char[] s = in.toCharArray();
+
+        int l = 0;
+        for (int i = 0; i < len - 1; i++) {
+            Byte c = sc.nextByte();
+            if (c == ' ') {
+                l++;
+                continue;
+            }
+            if (c == 'A')
+            {
+                out[l++] = String.valueOf(12);
+                out[l] = String.valueOf(34);
+            }
+            else if (c == 'B')
+            {
+                out[l++] = "AB";
+                out[l] = "CD";
+            }
+            else {
+                out[l] = "o";
+            }
+        }
+
+        System.out.printf("%d ", l+1);
+        for (int i = 0; i < l; i++) {
+
         }
 
     }
 
-    public void testStack() {
-        Utils utils = new Utils();
-        Scanner scanner = new Scanner(System.in);
-        Stack<Integer> s = new Stack<>(6);
-
-        char a = '\u0030';
-        System.out.println(a);
-
-        for (int i = 0; i < 6; i++) {
-            s.push(scanner.nextInt());
-        }
-
-        for (int i = 0; i < 6; i++) {
-            System.out.println(s.pop());
-        }
-        System.out.println(s.isEmpty());
-    }
 
 }
