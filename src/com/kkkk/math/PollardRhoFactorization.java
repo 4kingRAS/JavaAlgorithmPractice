@@ -11,25 +11,28 @@ import java.util.Scanner;
 
 public class PollardRhoFactorization {
 
+    private static final int MAX_LENGTH = 256;
     public static long[] factor;
     public static int total = 0;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long a = sc.nextLong();
-        factor = new long[256];
+        factor = new long[MAX_LENGTH];
         factorize(a);
         for (int i = 0; i < total; i++) {
             System.out.println(factor[i]);
         }
     }
 
-    public static String Pollard_rho(long n) {
-        String a = "";
-
-
-
-        return a;
+    public static long[] Pollard_rho(long n) {
+        factor = new long[MAX_LENGTH];
+        factorize(n);
+        long[] t = new long[total];
+        for (int i = 0; i < total; i++) {
+            t[i] = factor[i];
+        }
+        return t;
     }
 
     private static long factorize(long x) {

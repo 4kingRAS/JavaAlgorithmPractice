@@ -9,7 +9,7 @@ import java.util.*;
  **/
 //TODO:
 
-public class PublicBikeADV1018 {
+public class A1018_DFSandDijkstra {
 
     final int INF = 99999;
 
@@ -145,7 +145,7 @@ public class PublicBikeADV1018 {
 
     public static void main(String[] args) {
 
-        PublicBikeADV1018 p = new PublicBikeADV1018();
+        A1018_DFSandDijkstra p = new A1018_DFSandDijkstra();
         p.init();
         p.dijkstra(0);
         p.dfs(p.sp);
