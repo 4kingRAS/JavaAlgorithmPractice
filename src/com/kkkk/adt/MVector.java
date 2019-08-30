@@ -11,13 +11,13 @@ import java.util.Scanner;
  **/
 //TODO:
 
-public class Vector<E> {
+public class MVector<E> {
 
     private int capacity;
     private int count = 0;
     private Object[] data;
 
-    public Vector(int capacity) {
+    public MVector(int capacity) {
         if (capacity < 0)
             throw new IllegalArgumentException("Illegal Capacity: "+
                     capacity);
@@ -25,7 +25,7 @@ public class Vector<E> {
         this.data = new Object[capacity];
     }
 
-    public Vector() { this(10); }
+    public MVector() { this(10); }
 
     public int insert(E element) {
         data[count] = element;
@@ -57,7 +57,7 @@ public class Vector<E> {
     }
 
     public static void main(String[] args) {
-        Vector<Integer> s = new Vector<>();
+        MVector<Integer> s = new MVector<>();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             System.out.println(s.insert(sc.nextInt()));

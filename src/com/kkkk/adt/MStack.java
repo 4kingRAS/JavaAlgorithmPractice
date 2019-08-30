@@ -9,15 +9,14 @@ import java.util.ArrayList;
  **/
 //TODO:
 
-public class Stack<E> {
+public class MStack<E> {
     private static final int STACK_EMPTY= -1;
     int capacity;
     int topStack;
     ArrayList<E> s;
 
-    public Stack(int size) {
+    public MStack() {
         s = new ArrayList<>();
-        capacity = size;
         topStack = STACK_EMPTY;
     }
 

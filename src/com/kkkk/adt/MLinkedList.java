@@ -5,17 +5,17 @@ package com.kkkk.adt;
  * @date        2019-03-04
  * @description
  * @see         java.util.LinkedList
- * @param       <E> type of the Element in this LinkedList
+ * @param       <E> type of the Element in this MLinkedList
  **/
 //TODO:
 
-public class LinkedList<E> {
+public class MLinkedList<E> {
 
     Node<E> head = null;
     Node<E> tail = null;
     transient int size = 0;  // transient : turn off the serialization
 
-    public LinkedList() {
+    public MLinkedList() {
         //make empty list
     }
 

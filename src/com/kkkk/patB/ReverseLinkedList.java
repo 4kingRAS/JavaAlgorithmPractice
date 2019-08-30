@@ -12,14 +12,14 @@ import java.util.Scanner;
 //Tips:
 
 /*
-LinkedList<E>
+MLinkedList<E>
 
         get(int index) is O(n)
         add(E element) is O(1)
         add(int index, E element) is O(n)
         remove(int index) is O(n)
-        Iterator.remove() is O(1) <--- main benefit of LinkedList<E>
-        ListIterator.add(E element) is O(1) <--- main benefit of LinkedList<E>
+        Iterator.remove() is O(1) <--- main benefit of MLinkedList<E>
+        ListIterator.add(E element) is O(1) <--- main benefit of MLinkedList<E>
 
 ArrayList<E>
 

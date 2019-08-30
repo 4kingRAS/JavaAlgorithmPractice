@@ -23,11 +23,13 @@ public class BasicSort {
                 bubbleSort(arr);
                 break;
             case MERGE:
-
+                mergeSortRc(arr);
                 break;
             case INSERTION:
+                insertionSort(arr);
                 break;
             case SELECTION:
+                selectionSort(arr);
                 break;
             default:
                 break;
@@ -82,7 +84,6 @@ public class BasicSort {
      */
     public static void mergeSortRc(int[] a) {
         int len = a.length;
-        int[] result = Arrays.copyOf(a, a.length);
         divide(a, 0, len);  // NOT len -1 !!
     }
 
