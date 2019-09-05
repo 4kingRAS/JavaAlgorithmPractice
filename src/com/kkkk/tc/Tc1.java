@@ -6,60 +6,41 @@ package com.kkkk.tc;
  * @description s
  **/
 //TODO:
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
 //public class Main {
 public class Tc1 {
 
-    public int i = 0;
-    char[] s;
 
-    public String str() {
-        String tp = "";
-        String co = "";
-        boolean isStr = false;
-        while (true) {
-            i++;
-            if (s[i] == ']') break;
-            if (s[i] == '[') {
-                tp = tp + str();
-                break;
-            }
-
-            if (isStr) tp = tp + s[i];
-            if(s[i] != '|' && !isStr) {
-                co = co + s[i];
-            } else {
-                isStr = true;
-            }
-        }
-
-        return tp.repeat(Integer.valueOf(co));
-    }
-
-    public void init() {
-        Scanner sc = new Scanner(System.in);
-        String t = sc.nextLine();
-        s = t.toCharArray();
-        sc.close();
-
-        i = 0;
-        String p = "";
-        while (i < t.length()){
-            if (s[i] == '[') {
-                p = p + str();
-                i++;
-            }
-            p = p + s[i];
-            i++;
-        }
-
-        System.out.println(p);
-    }
 
     public static void main(String[] args) {
-        Tc1 t = new Tc1();
-        t.init();
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[] a = new int[n];
+        int[] b = new int[m];
+        boolean[] use = new boolean[m];
+        Arrays.fill(use, false);
+
+//        for (int i = 0; i < n; i++) {
+//            a[i] = sc.nextInt();
+//        }
+//        for (int i = 0; i < m; i++) {
+//            b[i] = sc.nextInt();
+//        }
+//
+//        int sum = 0;
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < m; j++) {
+//                if (!use[j] && (b[j] + a[i]) % 2 != 0) {
+//                    sum++;
+//                    use[j] = true;
+//                }
+//            }
+//        }
+        System.out.println("");
     }
 }
