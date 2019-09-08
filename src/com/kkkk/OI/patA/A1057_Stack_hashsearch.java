@@ -1,4 +1,4 @@
-package com.kkkk.patA;
+package com.kkkk.OI.patA;
 
 import java.util.Scanner;
 import java.util.Stack;

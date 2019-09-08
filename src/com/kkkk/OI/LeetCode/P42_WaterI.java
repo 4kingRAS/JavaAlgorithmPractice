@@ -1,4 +1,4 @@
-package com.kkkk.LeetCode;
+package com.kkkk.OI.LeetCode;
 
 /**
  * @author Yulin.Wang
@@ -11,7 +11,7 @@ package com.kkkk.LeetCode;
  * tips: 找到最高点，可以保证低点肯定能包起来。
  */
 
-public class P42WaterI {
+public class P42_WaterI {
     public static void main(String[] args) {
         int[] height = {0,1,0,3,1,0,1,4,2,1,2,4};
 

@@ -13,14 +13,17 @@ import java.util.Arrays;
 public class BasicSort {
 
     //  only ascend
-    public enum method { BUBBLE, INSERTION, MERGE, SELECTION }
+    public enum method { BUBBLE, BUBBLEX, INSERTION, MERGE, SELECTION }
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static void sort(int[] arr, method m) {
         switch (m) {
             case BUBBLE:
                 bubbleSort(arr);
+                break;
+            case BUBBLEX:
+                bubbleSortEX(arr);
                 break;
             case MERGE:
                 mergeSortRc(arr);
@@ -49,6 +52,24 @@ public class BasicSort {
                     sorted = false;
                 }
             }
+        }
+    }
+
+    /**
+     * 改进冒泡排序
+     */
+    public static void bubbleSortEX(int[] a) {
+        int lo = 0, hi = a.length;
+        int last = hi;
+        while (lo < last) {
+            int l = lo, h = hi--;   // 每N轮迭代， 最高N位是有序的
+            last = l;               // 最右侧的逆序
+            while (++l < h) {
+                if (a[l - 1] > a[l]) {
+                    last = l;       //记录最后一次逆序，显然大于last的为有序
+                    Utils.swap(a, l - 1, l);
+                }
+            } // 如果有一轮检查通过，直接结束
         }
     }
 
@@ -95,7 +116,7 @@ public class BasicSort {
         divide(a, m, r); // divide
         merge(a, l, m, r);
 
-        if (DEBUG) { printArray(a); }
+        if (DEBUG) { Utils.printArray(a); }
     }
 
     static void merge(int[] a, int l, int m, int r) {
@@ -118,12 +139,7 @@ public class BasicSort {
         }
     }
 
-    static void printArray(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            System.out.printf("%d ", a[i]);
-        }
-        System.out.println();
-    }
+
 
     public static void main(String[] args) {
         int[] a = {2, 2, 122, 3, 3, 7, 55, 55, 0, 9, 33, 21};

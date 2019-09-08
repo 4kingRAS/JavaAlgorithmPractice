@@ -1,4 +1,4 @@
-package com.kkkk.patB;
+package com.kkkk.OI.patB;
 
 import java.util.Arrays;
 import java.util.Scanner;

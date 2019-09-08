@@ -1,4 +1,4 @@
-package com.kkkk.patB;
+package com.kkkk.OI.patB;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 //Tips:
 
 /*
-MLinkedList<E>
+LinkedList<E>
 
         get(int index) is O(n)
         add(E element) is O(1)

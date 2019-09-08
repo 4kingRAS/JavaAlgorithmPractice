@@ -19,9 +19,9 @@ public class PollardRhoFactorization {
         Scanner sc = new Scanner(System.in);
         long a = sc.nextLong();
         factor = new long[MAX_LENGTH];
-        factorize(a);
-        for (int i = 0; i < total; i++) {
-            System.out.println(factor[i]);
+        long[] ans = Pollard_rho(a);
+        for (int i = 0; i < ans.length; i++) {
+            System.out.println(ans[i]);
         }
     }
 
@@ -38,7 +38,7 @@ public class PollardRhoFactorization {
     private static long factorize(long x) {
 
         if (x == 1) return 0;
-        if (isPrime(x)) {
+        if (MathUtils.isPrime(x)) {
             factor[total++] = x;
             return x;
         }
@@ -56,7 +56,7 @@ public class PollardRhoFactorization {
                     c = (long)(Math.random()*x);
                     continue;
                 }
-                p = Utils.gcd(Math.abs(a - b), x);
+                p = MathUtils.gcd(Math.abs(a - b), x);
             }
             size *= 2;
             b = a;
@@ -70,23 +70,6 @@ public class PollardRhoFactorization {
         return (x*x + c) % n;
     }
 
-    private static boolean isPrime(long n) {
-        return isPrime_test6(n);
-    }
 
-
-    /**
-    * >=5的素数一定和6的倍数相邻
-    **/
-    private static boolean isPrime_test6(long n) {
-        if (n == 2 || n == 3) { return true; }
-        if (n % 6 != 1 && n % 6 != 5) { return false; }
-
-        for (int i = 5; i <= Math.sqrt(n); i+=6) {
-            if (n % i == 0 || n % (i+2) == 0)
-                return false;
-        }
-        return true;
-    }
 
 }
