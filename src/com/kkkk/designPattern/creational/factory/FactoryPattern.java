@@ -9,20 +9,41 @@ import com.kkkk.designPattern.creational.Shape;
  */
 //TODO:
 
-public class FactoryPattern {
-
-    class Circle implements Shape {
-        @Override
-        public void draw() {
-            System.out.println("O");
+class ShapeFactory {
+    public static final int CIRCLE = 0;
+    public static final int SQUARE = 1;
+    public Shape createShape(int shapeType) {
+        switch (shapeType) {
+            case CIRCLE:
+                return new Circle();
+            case SQUARE:
+                return new Square();
+            default:
+                return null;
         }
     }
+}
 
-    class Square implements Shape {
-        @Override
-        public void draw() {
-            System.out.println("口");
-        }
+class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("O");
+    }
+}
+
+class Square implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("口");
+    }
+}
+
+public class FactoryPattern {
+
+    public static void main(String[] args) {
+        ShapeFactory sf = new ShapeFactory();
+        Shape s = sf.createShape(ShapeFactory.CIRCLE);
+        s.draw();
     }
 
 }
