@@ -1,5 +1,8 @@
 package com.kkkk.tc;
 
+import com.kkkk.concurrent.AlterPrint;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**

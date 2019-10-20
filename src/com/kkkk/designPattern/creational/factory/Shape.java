@@ -1,4 +1,4 @@
-package com.kkkk.designPattern.creational;
+package com.kkkk.designPattern.creational.factory;
 
 /**
  * @Author Yulin.Wang

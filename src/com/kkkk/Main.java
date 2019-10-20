@@ -4,23 +4,26 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static int a = 3;
+
+    public int getA() {
+        return a;
+    }
+
+    public static void setA(int a) {
+        Main.a = a;
+    }
+
     public static void main(String[] args) {
-        String s1 = "new";
-        String s2 = new String("new");
-        String s3 = "n" + "ew";
-        String s4 = "ew";
-        String s5 = "n" + s4;
-
-        System.out.println(s1 == s2);
-        System.out.println(s1 == s3);
-        System.out.println(s2 == s3);
-        System.out.println(s1 == s5);
-        System.out.println(s3 == s5);
-        System.out.println(s5.equals(s2));
-
-        Scanner sc = new Scanner(System.in);
-        String a = sc.next("\\d{4}-\\d{2}");
+        a = 5;
         System.out.println(a);
+        Main aa = new Main();
+        Main bb = new Main();
+        setA(3);
+        System.out.println(aa.getA());
+        a = 4;
+        System.out.println(bb.getA());
+        System.out.println(aa.getA());
 
     }
 

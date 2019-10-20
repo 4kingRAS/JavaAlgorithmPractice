@@ -1,4 +1,4 @@
-package com.kkkk.OI.patB;
+package com.kkkk.codegame.patB;
 
 import java.util.Arrays;
 import java.util.Scanner;

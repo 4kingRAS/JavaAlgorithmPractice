@@ -1,4 +1,4 @@
-package com.kkkk.OI.patA;
+package com.kkkk.codegame.patA;
 
 import java.util.*;
 
