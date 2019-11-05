@@ -10,10 +10,14 @@ import java.util.concurrent.CountDownLatch;
 //TODO:
 
 public class AlterPrintEx {
-    // using CountDownLatch
-
+    /**
+     * using CountDownLatch
+     **/
+    /*
     private CountDownLatch sec = new CountDownLatch(1);
     private CountDownLatch trd = new CountDownLatch(1);
+
+     */
 
     public AlterPrintEx() {
 
