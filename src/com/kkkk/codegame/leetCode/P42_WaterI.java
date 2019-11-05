@@ -1,4 +1,4 @@
-package com.kkkk.codegame.LeetCode;
+package com.kkkk.codegame.leetCode;
 
 /**
  * @author Yulin.Wang
