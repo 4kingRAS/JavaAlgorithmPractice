@@ -70,6 +70,4 @@ public class PollardRhoFactorization {
         return (x*x + c) % n;
     }
 
-
-
 }
