@@ -44,11 +44,12 @@ public class BasicSort {
      */
     public static void bubbleSort(int[] a) {
         int n = a.length;
-        /* 当sorted = true时停止循环， sorted = !sorted返回!sorted，且更改了sorted */
-        for (boolean sorted = false; sorted = !sorted; n--) {
-            for (int j = 1; j < n; j++) {
-                if (a[j - 1] > a[j]) {
-                    Utils.swap(a, j, j-1);
+        boolean sorted = false;               //整个序列有序可退出
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < n - 1; i++) {
+                if (a[i] > a[i + 1]) {
+                    Utils.swap(a, i, i+1);
                     sorted = false;
                 }
             }
@@ -56,20 +57,21 @@ public class BasicSort {
     }
 
     /**
-     * 改进冒泡排序
+     * 改进冒泡排序， 当后面有大段已排序的对象时，可跳过
      */
     public static void bubbleSortEX(int[] a) {
-        int lo = 0, hi = a.length;
-        int last = hi;
-        while (lo < last) {
-            int l = lo, h = hi--;   // 每N轮迭代， 最高N位是有序的
-            last = l;               // 最右侧的逆序
-            while (++l < h) {
-                if (a[l - 1] > a[l]) {
-                    last = l;       //记录最后一次逆序，显然大于last的为有序
-                    Utils.swap(a, l - 1, l);
+        boolean sorted = false;
+        int last = a.length - 1;                           //记录最右侧逆序对
+        while (!sorted) {
+            int hi = last;
+            sorted = true;
+            for (int i = 0; i < hi; i++) {                 //扫描到逆序对位置退出
+                if (a[i] > a[i + 1]) {
+                    Utils.swap(a, i, i+1);
+                    last = i + 1;
+                    sorted = false;
                 }
-            } // 如果有一轮检查通过，直接结束
+            }
         }
     }
 
@@ -143,9 +145,9 @@ public class BasicSort {
 
     public static void main(String[] args) {
         int[] a = {2, 2, 122, 3, 3, 7, 55, 55, 0, 9, 33, 21};
-        int[] b = {3,4,2,1,5};
-        mergeSortRc(b);
-
+        int[] b = {3,4,2,1,4,5};
+        bubbleSortEX(a);
+        Utils.printArray(a);
     }
 
 }

@@ -20,8 +20,6 @@ public class QuickSort {
 
     static int partition(int[] a, int lo, int hi) {
         int pivot = (lo + hi) >> 1;
-        for (int i = lo; i <= hi; i++) {
-        }
         return 0;
     }
 
