@@ -12,6 +12,12 @@ class LazySingleton {
     private LazySingleton() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Lazy";
+    }
+
     public static LazySingleton getInstance() { // 加 synchronized 可以线程安全
         if (instance == null) {
             instance = new LazySingleton();
@@ -51,7 +57,9 @@ public class Singleton {
 
     public static void main(String[] args) {
         Singleton s = Singleton.getInstance();
+        LazySingleton l = LazySingleton.getInstance();
         System.out.println(s);
+        System.out.println(l);
     }
 
 }

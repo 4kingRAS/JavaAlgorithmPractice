@@ -19,7 +19,14 @@ public class QuickSort {
     }
 
     static int partition(int[] a, int lo, int hi) {
-        int pivot = (lo + hi) >> 1;
+        int pivot = a[hi];
+        int i = lo;
+        for (int j = lo; j <= hi; j++) {
+            if (a[j] < pivot) {
+                
+            }
+        }
+        Utils.swap(a, i, hi);
         return 0;
     }
 

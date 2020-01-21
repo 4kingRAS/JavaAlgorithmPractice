@@ -52,6 +52,11 @@ public class BinarySearch {
         }
         System.out.println();
         System.out.println(binarySearchLE(a, a[3]));
+
+        int[] aaa = {2, 3, 1, 2, 2, 3};
+        int[] bb = new int[3];
+        System.out.println(DuplicatedNumber.hasDuplicatedNum(aaa, bb));
+        System.out.println(bb[0]);
     }
 
 }
