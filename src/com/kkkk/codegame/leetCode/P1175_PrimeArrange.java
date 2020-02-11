@@ -1,6 +1,6 @@
 package com.kkkk.codegame.leetCode;
 
-import com.kkkk.math.MathUtils;
+import com.kkkk.algo.math.MathUtils;
 
 /**
  * @author Yulin.Wang
