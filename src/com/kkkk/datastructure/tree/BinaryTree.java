@@ -35,14 +35,42 @@ public class BinaryTree<E> {
         current = root;
     }
 
-    public void buildTree(ArrayList<E> list) {
+    public void createTree(E[] list) {
         int cur = 0;
         insert(list, root, null, cur);
     }
 
-    public int insert(ArrayList<E> list, Node<E> n, Node<E> p, int cur) {
-        if (cur < list.size()) {
-            E e = list.get(cur);
+    public void createTree(E[] pre, E[] in) {
+        root = buildTree(pre, in, null);
+    }
+
+    private Node<E> buildTree(E[] pre, E[] in, Node<E> parent){
+        if (pre.length == 0) { // 空数组不是null
+            return null;
+        }
+        E rootValue = pre[0];
+        Node<E> root = new Node<>(parent, rootValue);
+        int rootIndex = 0;
+        for (int i = 0; i < in.length; i++) {
+            if (in[i] == rootValue) {
+                rootIndex = i;
+                break;
+            }
+        }
+        root.leftChild = buildTree(
+                Arrays.copyOfRange(pre, 1, 1 + rootIndex),
+                Arrays.copyOf(in, rootIndex),
+                root);
+        root.rightChild = buildTree(
+                Arrays.copyOfRange(pre, 1 + rootIndex, pre.length),
+                Arrays.copyOfRange(in, 1 + rootIndex, in.length),
+                root);
+        return root;
+    }
+
+    public int insert(E[] list, Node<E> n, Node<E> p, int cur) {
+        if (cur < list.length) {
+            E e = list[cur];
             cur++;
             if (e != null) {
                 n.data = e;
@@ -122,12 +150,29 @@ public class BinaryTree<E> {
 
     public static void main(String[] args) {
         Integer[] a = {1, 3, null, null, 32, null, 6, 0, 65};
-        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(a));
-        BinaryTree<Integer> tree = new BinaryTree<>(new Node<Integer>(null, 0));
-        tree.buildTree(list);
+        //ArrayList<Integer> list = new ArrayList<>(Arrays.asList(a));
+        BinaryTree<Integer> tree = new BinaryTree<>(new Node<>(null, 0));
+        tree.createTree(a);
         tree.traverse(ORDER.PRE);
         System.out.println("BinaryTree[ size: " + tree.getSize() + " height:]");
-        System.out.println(tree.list);
+        System.out.println(tree.getList());
+
+        String b = "ABDEGCF";
+        String c = "DBGEACF";
+        Character[] pre = new Character[b.length()];
+        Character[] in = new Character[c.length()];
+        for (int i = 0; i < b.length(); i++) {
+            pre[i] = b.charAt(i);
+        }
+        for (int i = 0; i < c.length(); i++) {
+            in[i] = c.charAt(i);
+        }
+
+        BinaryTree<Character> ctree = new BinaryTree<>(new Node<>(null, '0'));
+        ctree.createTree(pre, in);
+        ctree.traverse(ORDER.PRE);
+        System.out.println("BinaryTree[ size: " + ctree.getSize() + " height:]");
+        System.out.println(ctree.getList());
     }
 
 }

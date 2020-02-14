@@ -9,6 +9,14 @@ package com.kkkk.pattern.ioc;
 public class Bottom {
     private Wheels wheels;
 
+    public Wheels getWheels() {
+        return wheels;
+    }
+
+    public void setWheels(Wheels wheels) {
+        this.wheels = wheels;
+    }
+
     public Bottom(Wheels wheels) {
         this.wheels = wheels;
     }

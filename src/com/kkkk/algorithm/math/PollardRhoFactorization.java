@@ -1,4 +1,4 @@
-package com.kkkk.algo.math;
+package com.kkkk.algorithm.math;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
-package com.kkkk.algo.search;
+package com.kkkk.algorithm.search;
 
-import com.kkkk.algo.sort.BasicSort;
+import com.kkkk.algorithm.sort.BasicSort;
 
 /**
  * @author Yulin.Wang
@@ -15,7 +15,7 @@ public class BinarySearch {
     public static int binarySearch(int[] a, int e) {
         int lo = 0, hi = a.length;
         while (hi - lo > 1) {// 区间宽度 == 1时终止
-            int mi = (lo + hi) >> 1;
+            int mi = (lo + hi) >>> 1; // 无符号右移，防止加法溢出
             if (e < a[mi]) {
                 hi = mi;
             } else {
@@ -29,7 +29,7 @@ public class BinarySearch {
     public static int binarySearchLE(int[] a, int e) {
         int lo = 0, hi = a.length;
         while (hi > lo) {// 区间宽度 == 0时终止
-            int mi = (lo + hi) >> 1;
+            int mi = (lo + hi) >>> 1;
             if (e < a[mi]) {
                 hi = mi;
             } else {

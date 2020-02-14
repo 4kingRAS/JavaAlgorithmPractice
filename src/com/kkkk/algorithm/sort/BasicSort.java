@@ -1,4 +1,4 @@
-package com.kkkk.algo.sort;
+package com.kkkk.algorithm.sort;
 
 import com.kkkk.Utils;
 

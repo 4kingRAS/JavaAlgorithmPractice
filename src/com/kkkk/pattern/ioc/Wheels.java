@@ -7,7 +7,7 @@ package com.kkkk.pattern.ioc;
  */
 
 public class Wheels {
-    private Integer count;
+    public Integer count;
 
     public Wheels(Integer count) {
         this.count = count;

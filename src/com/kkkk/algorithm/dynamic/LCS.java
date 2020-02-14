@@ -1,4 +1,4 @@
-package com.kkkk.algo.dynamic;
+package com.kkkk.algorithm.dynamic;
 
 import java.util.Scanner;
 

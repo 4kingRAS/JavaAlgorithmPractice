@@ -1,4 +1,4 @@
-package com.kkkk.algo;
+package com.kkkk.algorithm;
 
 /**
  * @author Yulin.Wang

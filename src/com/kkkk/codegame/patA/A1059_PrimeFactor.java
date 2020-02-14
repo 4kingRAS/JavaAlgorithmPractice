@@ -1,6 +1,6 @@
 package com.kkkk.codegame.patA;
 
-import com.kkkk.algo.math.PollardRhoFactorization;
+import com.kkkk.algorithm.math.PollardRhoFactorization;
 
 import java.util.Arrays;
 import java.util.Scanner;

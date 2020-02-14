@@ -1,4 +1,4 @@
-package com.kkkk.algo.recursion;
+package com.kkkk.algorithm.recursion;
 
 /**
  * @author Yulin.Wang

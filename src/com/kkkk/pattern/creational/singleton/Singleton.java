@@ -7,6 +7,7 @@ package com.kkkk.pattern.creational.singleton;
  */
 //TODO:
 
+/*
 class LazySingleton {
     private static LazySingleton instance;
     private LazySingleton() {
@@ -23,6 +24,29 @@ class LazySingleton {
             instance = new LazySingleton();
         }
         return instance;
+    }
+}
+
+ */
+
+
+class DoubleCheckSingleton {
+    private volatile static DoubleCheckSingleton singleton;
+    private DoubleCheckSingleton (){}
+    public static DoubleCheckSingleton getInstance() {
+        if (singleton == null) {                            //检查是否存在 ，存在时就不需要同步，提高性能
+            synchronized (DoubleCheckSingleton.class) {     //锁上
+                if (singleton == null) {                    //再次检查
+                    singleton = new DoubleCheckSingleton();
+                }
+            }
+        }
+        return singleton;
+    }
+
+    @Override
+    public String toString() {
+        return "DoubleCheck";
     }
 }
 
@@ -50,6 +74,8 @@ public class Singleton {
         return instance;
     }
 
+
+
     @Override
     public String toString() {
         return "It's my singleton";
@@ -57,9 +83,10 @@ public class Singleton {
 
     public static void main(String[] args) {
         Singleton s = Singleton.getInstance();
-        LazySingleton l = LazySingleton.getInstance();
+        //LazySingleton l = LazySingleton.getInstance();
+        DoubleCheckSingleton d = DoubleCheckSingleton.getInstance();
         System.out.println(s);
-        System.out.println(l);
+        System.out.println(d);
     }
 
 }
