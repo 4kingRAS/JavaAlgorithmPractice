@@ -1,4 +1,4 @@
-package com.effective.api;
+package com.interview.jdk;
 
 /**
  * @author Yulin.Wang

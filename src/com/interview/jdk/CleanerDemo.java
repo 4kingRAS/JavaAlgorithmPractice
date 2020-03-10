@@ -1,4 +1,4 @@
-package com.effective.api;
+package com.interview.jdk;
 
 import java.lang.ref.Cleaner;
 

@@ -24,8 +24,8 @@ public class CopyDemo {
     public static void main(String[] args) throws Exception {
         Member a = new Member("sadas");
         Member b = (Member) a.clone();
-        System.out.println(a.name);
-        System.out.println(b.name);
+        System.out.println(a + ": " + a.name);
+        System.out.println(b + ": " + b.name);
     }
 
 }
