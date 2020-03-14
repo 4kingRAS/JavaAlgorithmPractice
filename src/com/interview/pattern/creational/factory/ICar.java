@@ -2,10 +2,10 @@ package com.interview.pattern.creational.factory;
 
 /**
  * @Author Yulin.Wang
- * @Date 2019-09-10
+ * @Date 2020/3/14
  * @Description
  **/
 
-public interface Shape {
-    void draw();
+public interface ICar {
+    public void run();
 }
