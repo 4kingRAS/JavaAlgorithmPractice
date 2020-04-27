@@ -1,5 +1,8 @@
 package com.interview.pattern.creational.factory;
 
+import com.interview.pattern.demo.ICar;
+import com.interview.pattern.demo.IShape;
+
 /**
  * @author Yulin.Wang
  * @date 2020/3/14
@@ -25,9 +28,9 @@ public class FactoryWithReflect {
     }
 
     public static void main(String[] args) {
-        ICar car = FactoryWithReflect.getInstance("com.interview.pattern.creational.factory.Audi", ICar.class);
+        ICar car = FactoryWithReflect.getInstance("com.interview.pattern.demo.Audi", ICar.class);
         car.run();
-        IShape shape = FactoryWithReflect.getInstance("com.interview.pattern.creational.factory.Circle", IShape.class);
+        IShape shape = FactoryWithReflect.getInstance("com.interview.pattern.demo.Circle", IShape.class);
         shape.draw();
     }
 }

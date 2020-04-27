@@ -7,31 +7,9 @@ package com.interview.pattern.creational.singleton;
  */
 //TODO:
 
-/*
-class LazySingleton {
-    private static LazySingleton instance;
-    private LazySingleton() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Lazy";
-    }
-
-    public static LazySingleton getInstance() { // 加 synchronized 可以线程安全
-        if (instance == null) {
-            instance = new LazySingleton();
-        }
-        return instance;
-    }
-}
-
- */
-
 
 class DoubleCheckSingleton {
-    private volatile static DoubleCheckSingleton singleton;
+    private volatile static DoubleCheckSingleton singleton; // volatile 实例化后立即刷新，而不要副本
     private DoubleCheckSingleton (){}
     public static DoubleCheckSingleton getInstance() {
         if (singleton == null) {                            //检查是否存在 ，存在时就不需要同步，提高性能
@@ -58,7 +36,13 @@ public class Singleton {
     //饿汗，线程安全， 浪费内存
     private static Singleton instance = new Singleton();
 
-    private Singleton() {}
+    private Singleton() {
+        System.out.println("NEW" + Thread.currentThread().getName());
+    }
+
+    public void print() {
+        System.out.println(Thread.currentThread().getName() + "000");
+    }
 
     /*
     public static synchronized Singleton getInstance() {
@@ -82,11 +66,11 @@ public class Singleton {
     }
 
     public static void main(String[] args) {
-        Singleton s = Singleton.getInstance();
-        //LazySingleton l = LazySingleton.getInstance();
-        DoubleCheckSingleton d = DoubleCheckSingleton.getInstance();
-        System.out.println(s);
-        System.out.println(d);
+        for (int i = 0; i < 9; i++) {
+            new Thread(() -> {
+                Singleton.getInstance().print();
+            }, "s" + i).start();
+        }
     }
 
 }

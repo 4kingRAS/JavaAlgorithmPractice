@@ -1,5 +1,7 @@
 package com.interview.pattern.structural;
 
+import java.util.concurrent.Callable;
+
 /**
  * @author Yulin.Wang
  * @date 2020/2/14

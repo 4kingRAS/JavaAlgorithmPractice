@@ -1,4 +1,4 @@
-package com.interview.pattern.creational.factory;
+package com.interview.pattern.demo;
 
 /**
  * @author Yulin.Wang

@@ -1,5 +1,9 @@
 package com.interview.pattern.creational.factory;
 
+import com.interview.pattern.demo.Circle;
+import com.interview.pattern.demo.IShape;
+import com.interview.pattern.demo.Square;
+
 /**
  * @author Yulin.Wang
  * @date 2019-09-10
