@@ -2,6 +2,7 @@ package com.interview.network;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Yulin.Wang
@@ -17,7 +18,7 @@ public class EchoClient {
                     socket.getOutputStream()
             ));
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                    System.in, "UTF-8"
+                    System.in, StandardCharsets.UTF_8
             ));
 
             while (true) {

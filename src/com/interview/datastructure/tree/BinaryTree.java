@@ -2,6 +2,7 @@ package com.interview.datastructure.tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * @author Yulin.Wang
@@ -36,11 +37,11 @@ public class BinaryTree<E> {
 
     public void createTree(E[] list) {
         int cur = 0;
-        insert(list, root, null, cur);
+        insert(list, this.root, null, cur);
     }
 
     public void createTree(E[] pre, E[] in) {
-        root = buildTree(pre, in, null);
+        this.root = buildTree(pre, in, null);
     }
 
     private Node<E> buildTree(E[] pre, E[] in, Node<E> parent){
@@ -97,19 +98,19 @@ public class BinaryTree<E> {
 //    }
 
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     public boolean empty() {
-        return root == null;
+        return this.root == null;
     }
 
     public Node<E> getRoot() {
-        return root;
+        return this.root;
     }
 
     public ArrayList<E> getList() {
-        return list;
+        return this.list;
     }
 
 //    public int updateNodeHeight(Node<E> e) {
@@ -132,19 +133,42 @@ public class BinaryTree<E> {
 //    }
 
     public void traverse(ORDER order) {
-        list.clear();
+        this.list.clear();
         switch (order) {
             case PRE:
+                traversePreOrderIteration(this.root);
+                break;
             default:
-                traversePreOrder(root);
+                traversePreOrder(this.root);
         }
     }
 
     private void traversePreOrder(Node<E> e) {
         if (e == null) return;
-        list.add(e.data);
+        this.list.add(e.data);
         traversePreOrder(e.leftChild);
         traversePreOrder(e.rightChild);
+    }
+
+    private void traversePreOrderIteration(Node<E> root) {
+        Stack<Node<E>> s = new Stack<>();
+        Node<E> x = root;
+        while (true) {
+            s = goDownLeft(s, x);
+            if (s.isEmpty()) {
+                break;
+            }
+            x = s.pop();
+        }
+    }
+
+    private Stack<Node<E>> goDownLeft(Stack<Node<E>> s, Node<E> x) {
+        while (x.data != null) {
+            this.list.add(x.data);
+            s.push(x.rightChild);
+            x = x.leftChild;
+        }
+        return s;
     }
 
     public static void main(String[] args) {

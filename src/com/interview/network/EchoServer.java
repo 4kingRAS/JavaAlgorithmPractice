@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Yulin.Wang
@@ -21,7 +22,7 @@ public class EchoServer {
             System.out.println("BUFFERSIZE: " + serverSocket.getReceiveBufferSize());
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                    socket.getInputStream(), "UTF-8"
+                    socket.getInputStream(), StandardCharsets.UTF_8
             ));
             String str;
             while ((str = bufferedReader.readLine()) != null) {
