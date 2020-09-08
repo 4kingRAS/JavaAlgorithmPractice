@@ -1,4 +1,4 @@
-package com.interview.codegame.leetCode;
+package com.interview.codegame.LeetCode;
 
 import com.interview.algorithm.math.MathUtils;
 
