@@ -19,7 +19,7 @@ public class P654_MaxBinaryTree {
         TreeNode(int x) { val = x; }
     }
 
-    public static TreeNode constructMaximumBinaryTree(int[] nums) {
+    public static TreeNode makeMaximumBinaryTree(int[] nums) {
 
         TreeNode root = new TreeNode(nums[0]);
 
@@ -29,17 +29,29 @@ public class P654_MaxBinaryTree {
                 tmp.left = root;
                 root = tmp;
             } else {
-
+                TreeNode tmp = root;
+                while (tmp.right != null) {
+                    if (nums[i] > tmp.right.val) {
+                        TreeNode t = tmp.right;
+                        tmp.right = new TreeNode(nums[i]);
+                        tmp.right.left = t;
+                        break;
+                    } else {
+                        tmp = tmp.right;
+                    }
+                }
+                if (tmp.right == null) {
+                    tmp.right = new TreeNode(nums[i]);
+                }
             }
         }
-        //todo
-        TreeNode t = new TreeNode(3);
-        return t;
+        return root;
     }
 
     public static void main(String[] args) {
-        int[] n = {3, 2, 1, 6, 0 , 5};
-
+        int[] n = {3, 2, 1, 6, 0, 5};
+        TreeNode r = makeMaximumBinaryTree(n);
+        System.out.println("2");
     }
 
 }
