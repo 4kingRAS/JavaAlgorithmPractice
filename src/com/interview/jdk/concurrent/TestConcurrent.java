@@ -8,7 +8,7 @@ package com.interview.jdk.concurrent;
 //TODO:
 
 class MyThread implements Runnable {
-    private int ticket = 10;
+    private int ticket = 1000;
 
     public synchronized boolean sale() {
         if (this.ticket > 0) {
@@ -24,7 +24,7 @@ class MyThread implements Runnable {
     public void run() {
         while (true) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

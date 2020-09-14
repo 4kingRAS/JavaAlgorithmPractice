@@ -3,6 +3,7 @@ package com.interview.network;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -14,10 +15,18 @@ import java.util.Scanner;
 public class EchoClient {
 
     public static void main(String[] args) {
+
+        final String json = "{\n" +
+                " \"contentType\":\" regularCAN \" , \n" +
+                " \"contentFormat\":\"zip\" , \n" +
+                " \"contentData\":\"base64encodedString\", \n" +
+                " \"timestamp\":19458763458\n" +
+                "}";
+
         final String ip = "127.0.0.1";
         final String ip2 = "47.100.202.14";
         try {
-            Socket socket = new Socket(ip, 9001);
+            Socket socket = new Socket(ip2, 9001);
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(
                     socket.getOutputStream()
             ));
@@ -28,14 +37,17 @@ public class EchoClient {
                     socket.getInputStream(), StandardCharsets.UTF_8
             ));
 
-            char[] buf = new char[220];
+            char[] buf = new char[1024];
             while (sockReader.read(buf) != -1) {
-                bufferedWriter.flush();
                 System.out.println(buf);
-                if (buf[0] == 'q') {
-                    break;
-                }
+                Arrays.fill(buf, '\0');
             }
+
+//            while (bufferedReader.readLine() != null) {
+//                bufferedWriter.write(json);
+//                bufferedWriter.flush();
+//            }
+
             bufferedReader.close();
             bufferedWriter.close();
             socket.close();
