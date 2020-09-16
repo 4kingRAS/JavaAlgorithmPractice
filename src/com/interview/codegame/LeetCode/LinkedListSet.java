@@ -7,14 +7,6 @@ package com.interview.codegame.LeetCode;
  *                      P206 ReverseLinkedList
  *                      P92  ReverseLinkedList II
  */
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
 
 public class LinkedListSet {
 

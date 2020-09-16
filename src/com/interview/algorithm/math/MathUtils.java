@@ -41,4 +41,8 @@ public class MathUtils {
         return true;
     }
 
+    private static int randomInt(int scale) {
+        return (int) (Math.random()*scale);
+    }
+
 }
