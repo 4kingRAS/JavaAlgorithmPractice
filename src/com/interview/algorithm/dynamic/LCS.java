@@ -28,7 +28,7 @@ public class LCS {
                 if (b[j - 1] == a[i - 1]) {
                     dp[i][j]++;
                 } else {
-                    dp[i][j] = dp[i][j-1] > dp[i-1][j] ? dp[i][j-1] : dp[i-1][j];
+                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
                 }
 
                 if (debug) {
@@ -50,7 +50,7 @@ public class LCS {
         } else {
             int ta = lcs(a, at - 1, b, bt);
             int tb = lcs(a, at, b, bt - 1);
-            return ta > tb ? ta : tb;
+            return Math.max(ta, tb);
         }
 
     }

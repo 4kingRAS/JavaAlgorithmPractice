@@ -1,36 +1,30 @@
 package com.interview;
 
-import java.util.*;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String[] str = sc.nextLine().split(" ");
-        String key = sc.nextLine();
+        JSONObject a = new JSONObject();
+        a.put("a","s");
+        a.put("b","1s");
+        a.put("c","2s");
+        System.out.println(a.toJSONString());
 
-        int lk = key.length();
-        int count = 0;
-        for (String s : str) {
-            if (key.equals(s)) {
-                count++;
-                continue;
-            }
-            while (s.contains(key)) {
-                s = s.substring(0, s.lastIndexOf(key));
-                count++;
-            }
+    }
+
+    public static ArrayList<String> JSONtoList(JSONObject json) {
+        ArrayList<String> list = new ArrayList<>();
+        JSONArray ja = JSON.parseArray(json.toJSONString());
+        for (int i = 0; i < ja.size(); i++) {
+            list.add((String) ja.get(i));
         }
-
-        System.out.println(count);
-        for (int i = str.length - 1; i >= 0; i--) {
-            if (i == 0) {
-                System.out.print(str[i]);
-                break;
-            }
-            System.out.printf("%s ", str[i]);
-        }
-
+        return list;
     }
 
 }

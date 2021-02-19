@@ -7,7 +7,7 @@ package com.interview.algorithm.list;
  */
 
 public class Node<E> {
-    private final E value;
+    private E value;
     private Node<E> next;
 
     public Node(E value, Node<E> next) {
@@ -19,11 +19,20 @@ public class Node<E> {
         return value;
     }
 
+    public void setValue(E value) {
+        this.value = value;
+    }
+
     public Node<E> getNext() {
         return next;
     }
 
     public void setNext(Node<E> next) {
         this.next = next;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

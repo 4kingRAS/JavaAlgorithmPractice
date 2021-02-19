@@ -25,6 +25,7 @@ public class TestString {
         System.out.println(s5.equals(s2));
 
         Scanner sc = new Scanner(System.in);
+
         String a = sc.next("\\d{4}-\\d{2}");
         System.out.println(a);
 

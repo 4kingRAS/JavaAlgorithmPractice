@@ -45,4 +45,12 @@ public class MathUtils {
         return (int) (Math.random()*scale);
     }
 
+    private static Double randomDouble(int scale) {
+        return (Math.random()*scale);
+    }
+
+    public static int byteToInt(byte b) {
+        return b & 0xFF;
+    }
+
 }

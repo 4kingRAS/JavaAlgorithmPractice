@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * @author Yulin.Wang
@@ -16,18 +15,31 @@ public class EchoClient {
 
     public static void main(String[] args) {
 
-        final String json = "{\n" +
-                " \"contentType\":\" regularCAN \" , \n" +
-                " \"contentFormat\":\"zip\" , \n" +
-                " \"contentData\":\"base64encodedString\", \n" +
-                " \"timestamp\":19458763458\n" +
-                "}";
+        String json = "{\n" +
+                "  \"type\": \"5G\",\n" +
+                "  \"data\": {\n" +
+                "    \"var\": \"1321\",\n" +
+                "    \"cap\": \"132\",\n" +
+                "    \"ver\": \"asds\",\n" +
+                "    \"temp\": \"ada\",\n" +
+                "    \"mem\": \"sdas\",\n" +
+                "    \"cpu\": \"sadsa\",\n" +
+                "    \"band\": \"sadas\"\n" +
+                "  }\n" +
+                "}\r\n";
+
+        String xxx = "{\n" +
+                "  \"type\": \"5G\",\n" +
+                "  \"datasdashnldasjhlkdjalkjdlsakhlsan" +
+                "asjdlajdlkasjlkdjsakldjalkda" +
+                "sdlasjdljakldsjalkdasjd" +
+                "xzczxcxzxz";
 
         final String ip = "127.0.0.1";
-        final String ip2 = "47.100.202.14";
+        //final String ip = "8.129.170.91";
         try {
-            Socket socket = new Socket(ip2, 9001);
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(
+            Socket socket = new Socket(ip, 10086);
+            BufferedWriter sockWriter = new BufferedWriter(new OutputStreamWriter(
                     socket.getOutputStream()
             ));
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
@@ -38,18 +50,32 @@ public class EchoClient {
             ));
 
             char[] buf = new char[1024];
+
+            new Thread(() -> {
+                try {
+                    String tmp;
+                    int seq = 0;
+                    while ((tmp = bufferedReader.readLine()) != null) {
+                        String s = "tusasdasd\nsadsa\":\"0\"}\r\n";
+                        //sockWriter.write(json + seq++ + "\r\n");
+                        sockWriter.write(s + "\r\n");
+                        sockWriter.flush();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
             while (sockReader.read(buf) != -1) {
                 System.out.println(buf);
+                sockWriter.write(json);
+                sockWriter.flush();
                 Arrays.fill(buf, '\0');
             }
 
-//            while (bufferedReader.readLine() != null) {
-//                bufferedWriter.write(json);
-//                bufferedWriter.flush();
-//            }
-
             bufferedReader.close();
-            bufferedWriter.close();
+            sockWriter.close();
+            sockReader.close();
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
