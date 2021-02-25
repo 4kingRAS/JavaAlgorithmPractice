@@ -1,14 +1,15 @@
 package com.interview.algorithm.dynamic;
 
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * @author Yulin.Wang
  * @date 2019-05-13
  * @description dynamic and basic LongestCommonSequence
  **/
-//TODO:
-
 public class LCS {
     public String getLCSrecu(String origin) {
 
@@ -66,7 +67,6 @@ public class LCS {
 
             int length = dpLCS(a[0].toCharArray(), a[1].toCharArray());
             System.out.println(length);
-
 
         }
     }

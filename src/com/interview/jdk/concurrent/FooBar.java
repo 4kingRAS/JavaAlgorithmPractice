@@ -6,6 +6,7 @@ import java.util.concurrent.Semaphore;
  * @author Yulin.Wang
  * @date 2020/9/16
  * @description LeetCode 1115
+ *  通用交替打印类方法
  *              https://leetcode-cn.com/problems/print-foobar-alternately/
  */
 

@@ -17,10 +17,10 @@ public class Utils {
     }
     */
 
-    public static void swap(int[] arr, int a, int b) {
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
+    public static void swap(int[] arr, int indexA, int indexB) {
+        int temp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = temp;
     }
 
     public static void printArray(int[] a) {

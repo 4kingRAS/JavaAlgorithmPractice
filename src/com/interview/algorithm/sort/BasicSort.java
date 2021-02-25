@@ -147,16 +147,6 @@ public class BasicSort {
         int[] a = {2, 2, 122, 3, 3, 7, 55, 55, 0, 9, 33, 21};
         int[] b = {3,4,2,1,4,5};
 
-        boolean sorted = false;
-        while (!sorted) {
-            sorted = true;
-            for (int i = 0; i < a.length - 1; i++) {
-                if (a[i] > a[i + 1]) {
-                    Utils.swap(a, i, i + 1);
-                    sorted = false;
-                }
-            }
-        }
 
 
         System.out.println(Arrays.toString(a));

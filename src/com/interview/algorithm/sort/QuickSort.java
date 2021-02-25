@@ -13,7 +13,7 @@ public class QuickSort {
     static void quickSort(int[] a, int lo, int hi) {
         if (lo < hi) {
             int pivot = partition(a, lo, hi);   // 将小于pivot的移至左边，大于的移右边
-            quickSort(a, lo, pivot - 1);            // 对左右继续排序
+            quickSort(a, lo, pivot - 1);     // 对左右继续排序
             quickSort(a, pivot + 1, hi);
         }
     }

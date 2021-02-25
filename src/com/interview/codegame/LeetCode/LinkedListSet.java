@@ -14,7 +14,7 @@ public class LinkedListSet {
      * @param head HEAD
      * @return P206
      */
-    public ListNode reverseList(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
         ListNode current = head;
         ListNode newHead = null;
         while (current != null) {
@@ -26,6 +26,13 @@ public class LinkedListSet {
         return newHead;
     }
 
+    public static void printList(ListNode head) {
+        while (head != null) {
+            System.out.printf(head.next == null ? "%d" : "%d -> ", head.val);
+            head = head.next;
+        }
+    }
+
     public static void main(String[] args) {
         ListNode head = new ListNode(0);
         ListNode cur = head;
@@ -35,9 +42,9 @@ public class LinkedListSet {
         }
         cur.next = null;
 
-        while (head != null) {
-            System.out.printf("%d -> ", head.val);
-            head = head.next;
-        }
+        printList(head);
+        System.out.println();
+        head = reverseList(head);
+        printList(head);
     }
 }

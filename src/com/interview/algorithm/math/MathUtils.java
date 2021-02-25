@@ -1,5 +1,9 @@
 package com.interview.algorithm.math;
 
+import com.interview.Utils;
+
+import java.util.Arrays;
+
 /**
  * @author Yulin.Wang
  * @date 2019-08-22
@@ -45,12 +49,30 @@ public class MathUtils {
         return (int) (Math.random()*scale);
     }
 
-    private static Double randomDouble(int scale) {
+    public static Double randomDouble(int scale) {
         return (Math.random()*scale);
     }
 
     public static int byteToInt(byte b) {
         return b & 0xFF;
+    }
+
+    // 得到一个在闭区间 [min, max] 内的随机整数
+    public static int randInt(int min, int max) {
+        return  (int) ((max - min) * Math.random());
+    }
+
+    /**
+     * **分析洗牌算法正确性的准则：产生的结果必须有 n! 种可能，否则就是错误的。**
+     * 因为一个长度为 n 的数组的全排列就有 n! 种
+     */
+    public static void shuffleArray(int[] arr) {
+        int n = arr.length;
+        for (int i = 0 ; i < n; i++) {
+            // 从 i 到最后随机选一个元素
+            int rand = randInt(i, n - 1);
+            Utils.swap(arr, i, rand);
+        }
     }
 
 }
