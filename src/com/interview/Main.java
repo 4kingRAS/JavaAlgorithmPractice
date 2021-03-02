@@ -6,15 +6,21 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class Main {
 
     public static void main(String[] args) {
-        JSONObject a = new JSONObject();
-        a.put("a","s");
-        a.put("b","1s");
-        a.put("c","2s");
-        System.out.println(a.toJSONString());
+        String s = "[IMEI:231221]";
+        String kv = s.substring(1, s.length() - 1);
+        System.out.println(kv.split(":")[0]);
+        CopyOnWriteArraySet<String> a = new CopyOnWriteArraySet<>();
+        a.add("123121");
+        a.add("123121333");
+        a.add("23");
+        a.add("23");
+        a.add("123121333");
+        System.out.println(a.toString());
 
     }
 

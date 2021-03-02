@@ -54,11 +54,15 @@ public class EchoClient {
             new Thread(() -> {
                 try {
                     String tmp;
-                    int seq = 0;
                     while ((tmp = bufferedReader.readLine()) != null) {
-                        String s = "tusasdasd\nsadsa\":\"0\"}\r\n";
-                        //sockWriter.write(json + seq++ + "\r\n");
-                        sockWriter.write(s + "\r\n");
+                        String s;
+                        switch (tmp) {
+                            case "1":
+                                break;
+                            case "2":
+                                break;
+                        }
+                        sockWriter.write(tmp + "\r\n");
                         sockWriter.flush();
                     }
                 } catch (IOException e) {
@@ -68,8 +72,6 @@ public class EchoClient {
 
             while (sockReader.read(buf) != -1) {
                 System.out.println(buf);
-                sockWriter.write(json);
-                sockWriter.flush();
                 Arrays.fill(buf, '\0');
             }
 
