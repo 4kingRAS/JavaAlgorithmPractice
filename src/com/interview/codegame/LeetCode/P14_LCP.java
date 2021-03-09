@@ -18,7 +18,8 @@ public class P14_LCP {
         int j = s.length;
         for (int i = 1; i < strs.length; i++) {
             if (j == 0) return "";
-            for (int k = 0; k < Math.min(j, strs[i].length()); k++) {
+            j = Math.min(j, strs[i].length());
+            for (int k = 0; k < j; k++) {
                 if (s[k] != strs[i].charAt(k)) {
                     j = k;
                     break;
