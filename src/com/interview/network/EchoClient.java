@@ -74,13 +74,18 @@ public class EchoClient {
                 System.out.println(buf);
                 Arrays.fill(buf, '\0');
             }
-
-            bufferedReader.close();
-            sockWriter.close();
-            sockReader.close();
+            System.out.println("SADAS");
             socket.close();
+
+            System.out.println("SADAS");
+            sockWriter.close();
+
+            sockReader.close();
+            bufferedReader.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
