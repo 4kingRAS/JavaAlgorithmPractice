@@ -1,6 +1,7 @@
 package com.interview.algorithm.sort;
 
 import com.interview.Utils;
+import com.interview.algorithm.math.MathUtils;
 
 import java.util.Arrays;
 
@@ -147,9 +148,21 @@ public class BasicSort {
         int[] a = {2, 2, 122, 3, 3, 7, 55, 55, 0, 9, 33, 21};
         int[] b = {3,4,2,1,4,5};
 
+        int[] c = MathUtils.randArray(10);
+        boolean sorted = false;
+        int last = c.length - 1;
 
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < last; i++) {
+                if (c[i] > c[i+1]) {
+                    Utils.swap(c, i, i+1);
+                    sorted = false;
+                }
+            }
+        }
 
-        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(c));
     }
 
 }

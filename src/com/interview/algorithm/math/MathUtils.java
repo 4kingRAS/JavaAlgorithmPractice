@@ -59,7 +59,7 @@ public class MathUtils {
 
     // 得到一个在闭区间 [min, max] 内的随机整数
     public static int randInt(int min, int max) {
-        return  (int) ((max - min) * Math.random());
+        return  randomInt(max - min);
     }
 
     /**
@@ -73,6 +73,14 @@ public class MathUtils {
             int rand = randInt(i, n - 1);
             Utils.swap(arr, i, rand);
         }
+    }
+
+    public static int[] randArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = randomInt(1000);
+        }
+        return a;
     }
 
 }
