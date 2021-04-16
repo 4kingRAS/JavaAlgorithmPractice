@@ -23,19 +23,20 @@ public class ProduceAndConsumer {
 
     public static void main(String[] args) {
         List<Integer> sharedQueue = new ArrayList<>();
-        Thread t1 = new Thread(new Producer(sharedQueue), "Producer1");
-        Thread t8 = new Thread(new Producer(sharedQueue), "Producer2");
-        Thread t2 = new Thread(new Consumer(sharedQueue), "Consumer1");
-        Thread t3 = new Thread(new Consumer(sharedQueue), "Consumer2");
-        Thread t4 = new Thread(new Consumer(sharedQueue), "Consumer3");
+        Thread p1 = new Thread(new Producer(sharedQueue), "Producer1");
+        Thread p2 = new Thread(new Producer(sharedQueue), "Producer2");
+        Thread c1 = new Thread(new Consumer(sharedQueue), "Consumer1");
+        Thread c2 = new Thread(new Consumer(sharedQueue), "Consumer2");
+        Thread c3 = new Thread(new Consumer(sharedQueue), "Consumer3");
 
-        t1.start();
-        t8.start();
+        p1.start();
+        p2.start();
 
-        t3.start();
-        t2.start();
-        t4.start();
+        c1.start();
+        c2.start();
+        c3.start();
     }
+
     static class Producer implements Runnable{
         private final List<Integer> taskQueue;
         private final int MAX_SIZE = 10;

@@ -19,14 +19,43 @@ public class P410_SplitArray {
 
     public static int splitArray(int[] nums, int m) {
         //* 1. 得到上界为所有元素和，下界为最大元素。
+        int upper = 0;
+        int lower = 0;
         for (int i = 0; i < nums.length; i++) {
-
+            upper += nums[i];
+            if (nums[i] > lower) {
+                lower = nums[i];
+            }
         }
+
+        while (lower < upper) {
+            int mid = (upper - lower) >> 2 + lower;
+            if (check(nums, mid, m)) {
+
+            }
+        }
+
 
         return 2;
     }
 
+    //挑一个上下界之间的中间数传入
+    public static boolean check(int[] nums, int x, int m) {
+        int sum = 0;
+        int cnt = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (sum + nums[i] > x) {    // 有一个子数组和大于mid数
+                cnt++;                  // 子数组个数++
+                sum = nums[i];          // 重新统计
+            } else {
+                sum += nums[i];         // 存子数组和
+            }
+        }
+        return cnt <= m;
+    }
+
     public static void main(String[] args) {
+        int[] a = {7, 2, 5, 10, 8};
 
     }
 }

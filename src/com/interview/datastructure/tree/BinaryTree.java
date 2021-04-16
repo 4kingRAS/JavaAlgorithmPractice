@@ -1,9 +1,6 @@
 package com.interview.datastructure.tree;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Yulin.Wang
@@ -15,20 +12,26 @@ import java.util.Stack;
 
 public class BinaryTree<E> {
     static class Node<E> {
-        Node<E> parent;
-        Node<E> leftChild;
-        Node<E> rightChild;
+        Node<E> left;
+        Node<E> right;
         E data;
 
-        public Node(Node<E> parent, E data) {
-            this.parent = parent;
+        public Node() {}
+
+        public Node(E data) {
             this.data = data;
+        }
+
+        public Node(E data, Node<E> left, Node<E> right) {
+            this.data = data;
+            this.left = left;
+            this.right = right;
         }
     }
     protected int size = 0;
     protected int height = 0;
-    private final Node<E> root;
-    protected enum ORDER{ PRE, IN, POST, BREADTH, DEPTH }
+    private Node<E> root;
+
 
     public BinaryTree(Node<E> root) {
         this.root = root;
@@ -36,8 +39,12 @@ public class BinaryTree<E> {
         height++;
     }
 
-    public BinaryTree() {
-        this.root = null;
+    public BinaryTree<E> Build(List<E> list) throws Exception {
+        this.root = new Node<>(list.get(0));
+        for (E data: list) {
+
+        }
+        return this;
     }
 
     public int getSize() {
@@ -52,30 +59,29 @@ public class BinaryTree<E> {
         return this.root;
     }
 
-    public List<E> traverse(ORDER order) {
-        List<E> list = new ArrayList<>();
-        switch (order) {
-            case PRE:
-                traversePreOrderIteration(list, this.root);
-                break;
-            default:
-                traversePreOrder(list, this.root);
-        }
+    private List<E> traversePreOrder(Node<E> root) {
+        ArrayList<E> list = new ArrayList<>();
+        visit(list, root);
         return list;
     }
 
-    private void traversePreOrder(List<E> list, Node<E> e) {
+    private void visit(List<E> list, Node<E> e) {
         if (e == null) return;
         list.add(e.data);
-        traversePreOrder(list, e.leftChild);
-        traversePreOrder(list, e.rightChild);
+        visit(list, e.left);
+        visit(list, e.right);
     }
 
-    private List<E>  traversePreOrderIteration(List<E> list, Node<E> root) {
+    private List<E>  traversePreOrderIteration(Node<E> root) {
+        ArrayList<E> list = new ArrayList<>();
         Stack<Node<E>> s = new Stack<>();
         Node<E> x = root;
         while (true) {
-            s = goDownLeft(list, s, x);
+            while (x.data != null) {
+                list.add(x.data);
+                s.push(x.right);
+                x = x.left;
+            }
             if (s.isEmpty()) {
                 break;
             }
@@ -84,17 +90,47 @@ public class BinaryTree<E> {
         return list;
     }
 
-    private Stack<Node<E>> goDownLeft(List<E> list, Stack<Node<E>> s, Node<E> x) {
-        while (x.data != null) {
-            list.add(x.data);
-            s.push(x.rightChild);
-            x = x.leftChild;
+    private List<E> traverseLevelOrder(Node<E> root) {
+        ArrayList<E> list = new ArrayList<>();
+        Queue<Node<E>> queue = new LinkedList<>();
+
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node<E> n = queue.poll();
+            list.add(n.data);
+            if (n.left != null) {
+                queue.add(n.left);
+            }
+            if (n.right != null) {
+                queue.add(n.right);
+            }
         }
-        return s;
+
+        return list;
     }
 
+    public boolean isBalanced(Node root) {
+        return calcBalanced(root) != -1;
+    }
+
+    private int calcBalanced(Node root) {
+
+        if (root == null) return 0;
+        int ld = calcBalanced(root.left);
+        int rd = calcBalanced(root.right);
+        if (ld == -1) {
+            return -1;
+        }
+        if (rd == -1) {
+            return -1;
+        }
+        return Math.abs(ld - rd) < 2 ? Math.max(ld, rd) + 1 : -1;
+    }
+
+    /**
+     * ------------------------tester-----------------------------
+     */
     public static void main(String[] args) {
 
     }
-
 }
