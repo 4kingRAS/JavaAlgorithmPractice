@@ -39,11 +39,41 @@ public class BinaryTree<E> {
         height++;
     }
 
-    public BinaryTree<E> Build(List<E> list) throws Exception {
-        this.root = new Node<>(list.get(0));
-        for (E data: list) {
+    /**
+     * @param list node list
+     * @return binary tree build by list with level order.
+     */
+    public BinaryTree<E> Build(List<E> list) {
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+
+        E item = list.get(0);
+        this.root = new Node<>(item);
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.add(root);                            // 创建队列
+
+        int index = 1;
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.remove();
+            if (index == list.size()) { break; }    // 取完退出循环
+
+            item = list.get(index++);               // 左子树
+            if (item != null) {
+                node.left = new Node<>(item);
+                queue.add(node.left);
+            }
+
+            if (index == list.size()) { break; }    // 取完退出循环
+
+            item = list.get(index++);               // 右子树
+            if (item != null) {
+                node.left = new Node<>(item);
+                queue.add(node.left);
+            }
 
         }
+
         return this;
     }
 
@@ -93,15 +123,15 @@ public class BinaryTree<E> {
     private List<E> traverseLevelOrder(Node<E> root) {
         ArrayList<E> list = new ArrayList<>();
         Queue<Node<E>> queue = new LinkedList<>();
+        queue.add(root);                // 首先入队 root
 
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            Node<E> n = queue.poll();
+        while (!queue.isEmpty()) {      // 队列为空结束
+            Node<E> n = queue.poll();   // 取队首
             list.add(n.data);
-            if (n.left != null) {
+            if (n.left != null) {       // 加入左
                 queue.add(n.left);
             }
-            if (n.right != null) {
+            if (n.right != null) {      // 加入右
                 queue.add(n.right);
             }
         }
@@ -114,14 +144,11 @@ public class BinaryTree<E> {
     }
 
     private int calcBalanced(Node root) {
-
         if (root == null) return 0;
+
         int ld = calcBalanced(root.left);
         int rd = calcBalanced(root.right);
-        if (ld == -1) {
-            return -1;
-        }
-        if (rd == -1) {
+        if (ld == -1 || rd == -1) {
             return -1;
         }
         return Math.abs(ld - rd) < 2 ? Math.max(ld, rd) + 1 : -1;

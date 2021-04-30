@@ -1,27 +1,55 @@
 package com.interview;
 
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.atomic.AtomicBoolean;
+// 62 209
 
 public class Main {
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        public ListNode(int val) {
+            this.val = val;
+        }
+    }
+
+    public static ListNode reverseList(ListNode head) {
+        if (head == null) return head;
+        if (head.next == null) return head;
+
+        ListNode cur = head.next;
+        ListNode last = head;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = last;
+            last = cur;
+            cur = tmp;
+        }
+        head.next = null;
+        return last;
+    }
+
+    public static void print(ListNode cur) {
+        while (cur != null) {
+            System.out.print(cur.val + " - ");
+            cur = cur.next;
+        }
+    }
 
     public static void main(String[] args) {
-        var ages = new ArrayList<Integer>();
-        Collections.addAll(ages, 7, 14, 23, 11, 49, 49);
-        ages.removeIf(age -> age >= 40);
-        System.out.println(ages.stream().mapToInt(Integer::intValue).sum());
+        //int[] a = {1, 2, 3, 4, 5};
+        int[] a = {1,2};
+        ListNode h = new ListNode(a[0]);
+        ListNode cur = h;
+        for (int i = 1; i < a.length; i++) {
+            cur.next = new ListNode(a[i]);
+            cur = cur.next;
+        }
 
-
-        ArrayList<Integer> list = new ArrayList<>();
-        Collections.addAll(list, 7, 14, 23, 11, 49, 49);
-        int[] a = list.stream().mapToInt(Integer::intValue).toArray();
-        AtomicBoolean b = new AtomicBoolean();
+        cur = h;
+        print(cur);
+        cur = reverseList(h);
+        System.out.println();
+        print(cur);
     }
 
 }
