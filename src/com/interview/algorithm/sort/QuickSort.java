@@ -31,6 +31,39 @@ public class QuickSort {
         return i;
     }
 
+    /**
+     * @param a 被排序数组
+     * quicksort另一个写法
+     */
+    public static void sort(int[] a, int left, int right) {
+        if (left > right) return;
+        int lo, hi, pivot;
+
+        pivot = a[left];    //取最左为pivot
+        lo = left;
+        hi = right;
+        while (lo != hi) {
+            while (lo < hi && a[hi] >= pivot) {
+                hi--;
+            }
+
+            while (lo < hi && a[lo] <= pivot) {
+                lo++;
+            }
+
+            if (lo < hi) {
+                int t = a[lo];
+                a[lo] = a[hi];
+                a[hi] = t;
+            }
+        }
+        a[left] = a[lo];
+        a[lo] = pivot;
+
+        sort(a, left, lo - 1);
+        sort(a, lo + 1, right);
+    }
+
     public static void main(String[] args) {
         int[] a = {2, 2, 122, 3, 3, 7, 55, 55, 0, 9, 33, 21};
         int[] b = {3, 4, 2, 1, 5};

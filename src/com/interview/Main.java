@@ -2,6 +2,14 @@ package com.interview;
 
 // 62 209
 
+import com.interview.algorithm.sort.QuickSort;
+import com.interview.jdk.concurrent.FairLockTest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Main {
     static class ListNode {
         int val;
@@ -36,20 +44,14 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        //int[] a = {1, 2, 3, 4, 5};
-        int[] a = {1,2};
-        ListNode h = new ListNode(a[0]);
-        ListNode cur = h;
-        for (int i = 1; i < a.length; i++) {
-            cur.next = new ListNode(a[i]);
-            cur = cur.next;
-        }
+        int[] a = new int[] { 111, 3, 9, 22, 3, 7, 12 };
 
-        cur = h;
-        print(cur);
-        cur = reverseList(h);
-        System.out.println();
-        print(cur);
+        QuickSort.sort(a, 0, a.length - 1);
+        System.out.println(Arrays.toString(a));
+
+        ArrayList<String> s = new ArrayList<>();
+        LinkedList<String> w = new LinkedList<>();
     }
+
 
 }

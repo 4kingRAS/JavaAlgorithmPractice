@@ -28,8 +28,8 @@ public class BinaryTree<E> {
             this.right = right;
         }
     }
-    protected int size = 0;
-    protected int height = 0;
+    private int size = 0;
+    private int height = 0;
     private Node<E> root;
 
 
@@ -38,12 +38,14 @@ public class BinaryTree<E> {
         size++;
         height++;
     }
+    public BinaryTree() {
+    }
 
     /**
      * @param list node list
      * @return binary tree build by list with level order.
      */
-    public BinaryTree<E> Build(List<E> list) {
+    public BinaryTree<E> build(List<E> list) {
         if (list == null || list.size() == 0) {
             return null;
         }
@@ -52,28 +54,29 @@ public class BinaryTree<E> {
         this.root = new Node<>(item);
         Queue<Node<E>> queue = new LinkedList<>();
         queue.add(root);                            // 创建队列
+        size++;
 
-        int index = 1;
+        int index = 1;                              //记录元素个数
         while (!queue.isEmpty()) {
-            Node<E> node = queue.remove();
-            if (index == list.size()) { break; }    // 取完退出循环
+            Node<E> node = queue.remove();          //取队列头
 
+            if (index == list.size()) { break; }    // 取完退出循环
             item = list.get(index++);               // 左子树
             if (item != null) {
                 node.left = new Node<>(item);
                 queue.add(node.left);
+                size++;
             }
 
             if (index == list.size()) { break; }    // 取完退出循环
-
             item = list.get(index++);               // 右子树
             if (item != null) {
-                node.left = new Node<>(item);
-                queue.add(node.left);
+                node.right = new Node<>(item);
+                queue.add(node.right);
+                size++;
             }
 
         }
-
         return this;
     }
 
@@ -158,6 +161,12 @@ public class BinaryTree<E> {
      * ------------------------tester-----------------------------
      */
     public static void main(String[] args) {
+        List<Integer> t = List.of(1, 2, 3, 2131, 213, 11, 56);
 
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        tree = tree.build(t);
+        System.out.println(tree.size);
+
+        System.out.println(tree.traversePreOrder(tree.getRoot()));
     }
 }

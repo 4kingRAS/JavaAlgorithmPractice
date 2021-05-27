@@ -25,7 +25,6 @@ public class P42_WaterI {
         }
 
         int sum = 0;
-        int t = 0;
         int th = 0;
         for (int i = 1; i <= maxpos; i++) {
             int diff = height[i] - height[i - 1];
