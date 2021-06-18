@@ -4,11 +4,14 @@ package com.interview;
 
 import com.interview.algorithm.sort.QuickSort;
 import com.interview.jdk.concurrent.FairLockTest;
+import sun.misc.Unsafe;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public class Main {
     static class ListNode {
@@ -51,6 +54,65 @@ public class Main {
 
         ArrayList<String> s = new ArrayList<>();
         LinkedList<String> w = new LinkedList<>();
+        HashMap<String, String> hashMap = new HashMap();
+
+        List<StringBuilder> list =
+                Collections.synchronizedList(new ArrayList<>(List.of(new StringBuilder(""))));
+
+        StringBuilder sb = IntStream.of(1).mapToObj(n -> {
+            int targetKeyHash;
+            targetKeyHash = (targetKeyHash = list.get(0).hashCode()) ^ (targetKeyHash >>> 16);
+            //得到 sb的hash，参考hashmap 的 hash()
+
+            int targetTab = 63 & targetKeyHash;
+            while (list.size() < 40) {
+                StringBuilder nsb = new StringBuilder();
+                int keyHash;
+                keyHash = (keyHash = nsb.hashCode()) ^ (keyHash >>> 16);
+                int tab = 63 & keyHash;
+
+                if (tab == targetTab) {
+                    list.add(nsb);
+                }
+                //不断制造与sb相同hash 的 StringBuilder对象，加入list
+            }
+
+            var es = Executors.newFixedThreadPool(8);
+            AtomicInteger ai = new AtomicInteger(0);
+            int c = list.stream().mapToInt(Object::hashCode).min().getAsInt();
+            for (int i = 0; i < 8; i++) {
+                es.execute(() -> {
+                    while (ai.get() < 1) {
+                        StringBuilder nsb = new StringBuilder("");
+                        if (nsb.hashCode() == c) {
+                            if (ai.get() < 1) {
+                                list.add(nsb);
+                                ai.getAndIncrement();
+                            }
+                            break;
+                        }
+                    }
+                });
+            }
+
+            while (ai.get() < 1) {
+                StringBuilder nsb = new StringBuilder("");
+                if (nsb.hashCode() == c) {
+                    list.add(nsb);
+                    ai.getAndIncrement();
+                    break;
+                }
+            }
+            es.shutdownNow();
+            return list.get(list.size() - 1);
+        }).findFirst().orElseThrow();
+
+        Set<StringBuilder> set = new HashSet<>(list);
+        set.add(sb);
+        System.out.println(set.contains(sb));
+        sb.append("oops");
+        System.out.println(set.contains(sb));
+
     }
 
 

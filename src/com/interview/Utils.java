@@ -32,6 +32,9 @@ public class Utils {
 
 //    public static <T> T[] copyOfRange(T[], int begin, int end) {
 //
-//    }
+//    }StringBuilder sb = Stream.generate(StringBuilder::new)
+//            .dropWhile(b -> Collections.binarySearch(list, b,
+//                Comparator.comparingInt(Object::hashCode)) < 0)
+//            .findFirst().get();
 
 }

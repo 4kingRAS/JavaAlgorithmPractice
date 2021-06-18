@@ -39,35 +39,36 @@ public class QuickSort {
         if (left > right) return;
         int lo, hi, pivot;
 
-        pivot = a[left];    //取最左为pivot
+        pivot = a[left];                            // 取最左为pivot
         lo = left;
         hi = right;
-        while (lo != hi) {
-            while (lo < hi && a[hi] >= pivot) {
+        while (lo != hi) {                          // 双指针相遇结束
+            while (lo < hi && a[hi] >= pivot) {     // 从右找到第一个比pivot小的
                 hi--;
             }
 
-            while (lo < hi && a[lo] <= pivot) {
+            while (lo < hi && a[lo] <= pivot) {     // 从左找到第一个比pivot大的
                 lo++;
             }
 
-            if (lo < hi) {
+            if (lo < hi) {                          // 如果没相遇，则交换大小
                 int t = a[lo];
                 a[lo] = a[hi];
                 a[hi] = t;
             }
         }
-        a[left] = a[lo];
+        a[left] = a[lo];                            // 移动pivot到中间
         a[lo] = pivot;
 
-        sort(a, left, lo - 1);
+        sort(a, left, lo - 1);                 // 分治
         sort(a, lo + 1, right);
     }
 
     public static void main(String[] args) {
         int[] a = {2, 2, 122, 3, 3, 7, 55, 55, 0, 9, 33, 21};
         int[] b = {3, 4, 2, 1, 5};
-        quickSort(a, 0, a.length - 1);
+        //quickSort(a, 0, a.length - 1);
+        sort(a, 0, a.length - 1);
         Utils.printArray(a);
     }
 

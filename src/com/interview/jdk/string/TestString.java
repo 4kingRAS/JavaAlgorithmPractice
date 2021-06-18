@@ -1,6 +1,9 @@
 package com.interview.jdk.string;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * @author Yulin.Wang
@@ -24,10 +27,18 @@ public class TestString {
         System.out.println(s3 == s5); // 调用StringBuffer。append
         System.out.println(s5.equals(s2));
 
+        StringBuilder sb = new StringBuilder("");
+        Set<StringBuilder> set = new HashSet<>();
+        set.add(sb);
+        System.out.println(set.contains(sb));
+        System.out.println(sb.hashCode());
+        sb.append("asdas");
+        System.out.println(set.contains(sb));
+        System.out.println(sb.hashCode());
+
         Scanner sc = new Scanner(System.in);
 
         String a = sc.next("\\d{4}-\\d{2}");
         System.out.println(a);
-
     }
 }
